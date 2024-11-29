@@ -1,0 +1,91 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#root {
+  height: 100%;
+}
+
+.ui {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  font-family: "Bebas Neue", cursive;
+  height: 100%;
+
+  .time {
+    padding-top: 8px;
+    position: relative;
+    top: 10%;
+    font-size: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.25);
+    color: white;
+  }
+
+  .restart {
+    padding-top: 8px;
+    position: relative;
+    text-transform: uppercase;
+    font-size: 64px;
+    top: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.25);
+    color: white;
+    cursor: pointer;
+  }
+
+  .keys-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 65%;
+    .keys {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(3, 54px);
+      grid-template-rows: repeat(3, 54px);
+
+      .key {
+        border: 2px white solid;
+        background-color: rgba(255, 255, 255, 0.25);
+      }
+
+      .active {
+        background-color: rgba(255, 255, 255, 0.55);
+      }
+
+      .up {
+        grid-column: 2;
+        grid-row: 1;
+      }
+
+      .left {
+        grid-column: 1;
+        grid-row: 2;
+      }
+
+      .right {
+        grid-column: 3;
+        grid-row: 2;
+      }
+
+      .down {
+        grid-column: 2;
+        grid-row: 2;
+      }
+      .space {
+        grid-column: 1 / 4;
+      }
+    }
+  }
+}
