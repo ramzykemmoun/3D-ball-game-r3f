@@ -1,15 +1,6 @@
+import { GameStore } from "@/types/Game";
 import { create } from "zustand";
 import { subscribeWithSelector } from "zustand/middleware";
-
-type GameStore = {
-  trapsCount: number;
-  phase: "ready" | "playing" | "gameover";
-  start: () => void;
-  restart: () => void;
-  end: () => void;
-  startTime?: number;
-  endTime?: number;
-};
 
 export const useGame = create<GameStore>()(
   subscribeWithSelector((set) => ({
