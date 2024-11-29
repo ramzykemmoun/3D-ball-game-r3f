@@ -6,7 +6,6 @@ import { RigidBody } from "@react-three/rapier";
 
 export default function EndBlock({ position }: BlockProps) {
   const diamond = useGLTF("assets/stylized_crystal_cluster.glb");
-
   diamond.scene.children.forEach((mesh) => {
     mesh.castShadow = true;
   });
