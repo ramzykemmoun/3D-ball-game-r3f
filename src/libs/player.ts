@@ -4,6 +4,7 @@ import { RefObject } from "react";
 import { World, Ray } from "@dimforge/rapier3d-compat";
 import * as THREE from "three";
 
+// Player Class
 class GamePlayer {
   position: [number, number, number];
   impulse: {
