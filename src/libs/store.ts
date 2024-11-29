@@ -4,7 +4,7 @@ import { subscribeWithSelector } from "zustand/middleware";
 
 export const useGame = create<GameStore>()(
   subscribeWithSelector((set) => ({
-    trapsCount: Math.floor(Math.random() * (40 - 10) + 10),
+    trapsCount: 50,
     phase: "ready",
     start: () => {
       set((state) => {
@@ -20,7 +20,6 @@ export const useGame = create<GameStore>()(
       set(() => {
         return {
           phase: "ready",
-          trapsCount: Math.floor(Math.random() * (40 - 10) + 10),
         };
       });
     },
