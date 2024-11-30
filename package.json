@@ -9,7 +9,6 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
-  "proxy": "http://localhost:8080",
   "dependencies": {
     "@react-three/drei": "^9.118.0",
     "@react-three/fiber": "^8.17.10",
