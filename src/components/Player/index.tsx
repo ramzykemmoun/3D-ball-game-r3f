@@ -68,7 +68,6 @@ export default function Player() {
         }
 
         if (value === "gameover") {
-          console.log("update score", userId, score);
           await updateScore(userId!, score);
           player.removeForces();
         }

@@ -26,8 +26,8 @@ export async function updateScore(userId: string, score: number) {
 export async function getLeaderboard() {
   const response = await fetch("http://localhost:8080/leaderboard");
   const { data } = await response.json();
-  if (data.players) {
-    return data.players;
+  if (data.results) {
+    return data.results;
   }
 
   return [];

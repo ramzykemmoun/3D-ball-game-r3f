@@ -36,6 +36,7 @@ body {
   width: 100%;
   font-family: "Bebas Neue", cursive;
   height: 100%;
+  text-transform: uppercase;
 
   .toggle-leaderboard {
     position: absolute;
@@ -164,7 +165,7 @@ body {
   display: flex;
   flex-direction: column;
   z-index: 100;
-  padding: 8px;
+  padding: 12px;
   overflow-y: scroll;
 
   .leaderboard-list {

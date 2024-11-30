@@ -3,13 +3,11 @@ import { useEffect, useState } from "react";
 
 export default function Leaderboard() {
   const [leaderboard, setLeaderboard] = useState([]);
-  console.log(leaderboard);
   useEffect(() => {
     getLeaderboard().then((data) => {
       setLeaderboard(data);
     });
   }, []);
-
   return (
     <div className="leaderboard">
       <h1>Leaderboard</h1>
