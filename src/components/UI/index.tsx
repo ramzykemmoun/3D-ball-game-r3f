@@ -2,9 +2,10 @@ import { cn } from "@/libs/cn";
 import { useGame } from "@/libs/store";
 import { useKeyboardControls } from "@react-three/drei";
 import { addEffect } from "@react-three/fiber";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Auth from "./Auth";
 import Leaderboard from "./Leaderboard";
+import { getLeaderboard } from "@/libs/api";
 
 export default function UI() {
   const forward = useKeyboardControls((state) => state.forward);
@@ -19,6 +20,10 @@ export default function UI() {
   const toggleLeaderboard = useGame((state) => state.toggleLeaderboard);
   const [subscribeKeys] = useKeyboardControls();
 
+  const [leaderboard, setLeaderboard] = useState([]);
+  useEffect(() => {
+    getLeaderboard().then(setLeaderboard);
+  }, []);
   const time = useRef<HTMLDivElement>(null);
 
   const userId = useGame((state) => state.userId);
@@ -73,7 +78,7 @@ export default function UI() {
   return (
     <>
       {!userId && <Auth />}
-      {showLeaderboard && <Leaderboard />}
+      {showLeaderboard && <Leaderboard leaderboard={leaderboard} />}
       <div className="ui">
         <button className="toggle-leaderboard" onClick={toggleLeaderboard}>
           Leaderboard

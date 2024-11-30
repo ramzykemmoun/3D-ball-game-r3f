@@ -1,13 +1,8 @@
-import { getLeaderboard } from "@/libs/api";
-import { useEffect, useState } from "react";
+type Props = {
+  leaderboard: Array<{ name: string; bestScore: number }>;
+};
 
-export default function Leaderboard() {
-  const [leaderboard, setLeaderboard] = useState([]);
-  useEffect(() => {
-    getLeaderboard().then((data) => {
-      setLeaderboard(data);
-    });
-  }, []);
+export default function Leaderboard({ leaderboard }: Props) {
   return (
     <div className="leaderboard">
       <h1>Leaderboard</h1>
