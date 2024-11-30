@@ -22,7 +22,7 @@ export default function UI() {
 
   const [leaderboard, setLeaderboard] = useState([]);
   useEffect(() => {
-    getLeaderboard().then(setLeaderboard);
+    if (phase === "gameover") getLeaderboard().then(setLeaderboard);
   }, [phase, showLeaderboard]);
   const time = useRef<HTMLDivElement>(null);
 

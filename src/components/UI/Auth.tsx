@@ -11,7 +11,6 @@ export default function Auth() {
     if (username) {
       const user = await createUser(username);
       const { error, userId } = user;
-      console.log(user);
 
       if (error) {
         toast.error(error);
