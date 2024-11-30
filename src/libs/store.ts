@@ -5,7 +5,7 @@ import { subscribeWithSelector } from "zustand/middleware";
 export const useGame = create<GameStore>()(
   subscribeWithSelector((set) => ({
     score: 0,
-    trapsCount: 3,
+    trapsCount: 40,
     phase: "ready",
     userId: null,
     showLeaderboard: false,
