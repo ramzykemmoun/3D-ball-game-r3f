@@ -8,8 +8,13 @@ export async function createUser(username: string) {
     },
     body: JSON.stringify({ Name: username }),
   });
-  const { data } = await response.json();
-  return data.player.InsertedID;
+  const { message, data } = await response.json();
+  if (message === "player-already-exists") {
+    return {
+      error: "Username already exists",
+    };
+  }
+  return { userId: data.player.InsertedID };
 }
 
 export async function updateScore(userId: string, score: number) {
@@ -22,12 +27,14 @@ export async function updateScore(userId: string, score: number) {
   });
 
   const { data } = await response.json();
+  console.log(data);
   return data.player.MatchedCount > 0;
 }
 
 export async function getLeaderboard() {
   const response = await fetch(baseUrl + "/leaderboard");
   const { data } = await response.json();
+  console.log({ data });
   if (data.results) {
     return data.results;
   }

@@ -23,7 +23,7 @@ export default function UI() {
   const [leaderboard, setLeaderboard] = useState([]);
   useEffect(() => {
     getLeaderboard().then(setLeaderboard);
-  }, []);
+  }, [phase, showLeaderboard]);
   const time = useRef<HTMLDivElement>(null);
 
   const userId = useGame((state) => state.userId);
