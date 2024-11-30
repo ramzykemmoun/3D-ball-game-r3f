@@ -9,13 +9,14 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
+  "proxy": "http://localhost:8080",
   "dependencies": {
+    "@react-three/drei": "^9.118.0",
     "@react-three/fiber": "^8.17.10",
     "@react-three/rapier": "1.4",
     "@types/three": "^0.170.0",
     "leva": "^0.9.35",
     "path": "^0.12.7",
-    "r3f-perf": "^7.2.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "three": "^0.170.0",

@@ -1,6 +1,6 @@
 import { StartBlock, EndBlock } from "@/components/Level/Blocks";
 import { BlockProps } from "@/types/Block";
-import { FC, useMemo } from "react";
+import { FC, memo, useMemo } from "react";
 import Walls from "./Walls";
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
   traps: FC<BlockProps>[];
 };
 
-export default function Level({ trapsCount, traps }: Props) {
+function Level({ trapsCount, traps }: Props) {
   const blocks = useMemo(
     () =>
       Array.from({ length: trapsCount }, () => {
@@ -31,3 +31,5 @@ export default function Level({ trapsCount, traps }: Props) {
     </>
   );
 }
+
+export default memo(Level);

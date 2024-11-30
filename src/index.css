@@ -9,6 +9,26 @@ body {
   height: 100%;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.75);
+}
+
 .ui {
   position: absolute;
   top: 0;
@@ -16,6 +36,17 @@ body {
   width: 100%;
   font-family: "Bebas Neue", cursive;
   height: 100%;
+
+  .toggle-leaderboard {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    cursor: pointer;
+    font-size: 24px;
+    background-color: rgba(0, 0, 0, 0.25);
+    color: white;
+    padding: 8px;
+  }
 
   .time {
     padding-top: 8px;
@@ -85,6 +116,66 @@ body {
       }
       .space {
         grid-column: 1 / 4;
+      }
+    }
+  }
+}
+
+.form-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    input {
+      padding: 8px;
+      font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+      font-size: 24px;
+      text-align: center;
+      outline: none;
+    }
+    button {
+      padding: 8px;
+      font-size: 24px;
+      font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+      cursor: pointer;
+    }
+  }
+}
+
+.leaderboard {
+  position: absolute;
+  font-family: Arial, Helvetica, sans-serif;
+  top: 0;
+  left: 0;
+  width: 25%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.3);
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  padding: 8px;
+  overflow-y: scroll;
+
+  .leaderboard-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    .leaderboard-item {
+      display: flex;
+      justify-content: space-between;
+      span {
+        margin: 0 4px;
       }
     }
   }

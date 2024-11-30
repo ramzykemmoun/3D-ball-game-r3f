@@ -4,8 +4,40 @@ import { subscribeWithSelector } from "zustand/middleware";
 
 export const useGame = create<GameStore>()(
   subscribeWithSelector((set) => ({
-    trapsCount: 50,
+    score: 0,
+    trapsCount: 3,
     phase: "ready",
+    userId: null,
+    showLeaderboard: false,
+    setShowLeaderboard: (showLeaderboard: boolean) => {
+      set(() => {
+        return {
+          showLeaderboard,
+        };
+      });
+    },
+    toggleLeaderboard: () => {
+      set((state) => {
+        return {
+          showLeaderboard: !state.showLeaderboard,
+        };
+      });
+    },
+    setScore: (score: number) => {
+      set(() => {
+        return {
+          score,
+        };
+      });
+    },
+    setUserId: (userId: string) => {
+      set(() => {
+        return {
+          userId,
+        };
+      });
+    },
+
     start: () => {
       set((state) => {
         if (state.phase === "ready") {
@@ -27,7 +59,11 @@ export const useGame = create<GameStore>()(
     end: () => {
       set((state) => {
         if (state.phase === "playing")
-          return { phase: "gameover", endTime: Date.now() };
+          return {
+            phase: "gameover",
+            endTime: Date.now(),
+            showLeaderboard: true,
+          };
 
         return {};
       });

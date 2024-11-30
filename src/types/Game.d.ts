@@ -6,4 +6,11 @@ export type GameStore = {
   end: () => void;
   startTime?: number;
   endTime?: number;
+  userId: string | null;
+  setUserId: (userId: string) => void;
+  score: number;
+  setScore: (score: number) => void;
+  showLeaderboard: boolean;
+  setShowLeaderboard: (showLeaderboard: boolean) => void;
+  toggleLeaderboard: () => void;
 };

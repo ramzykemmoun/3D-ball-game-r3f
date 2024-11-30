@@ -5,14 +5,16 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import GamePlayer from "@/libs/player";
 import * as THREE from "three";
 import { useGame } from "@/libs/store";
+import { updateScore } from "@/libs/api";
 
 export default function Player() {
   const playerRef = useRef<RapierRigidBody>(null);
-
   const trapsCount = useGame((state) => state.trapsCount);
   const start = useGame((state) => state.start);
   const end = useGame((state) => state.end);
   const restart = useGame((state) => state.restart);
+  const userId = useGame((state) => state.userId);
+  const score = useGame((state) => state.score);
 
   const player = useMemo(
     () =>
@@ -34,15 +36,40 @@ export default function Player() {
   const { rapier, world } = useRapier();
 
   useEffect(() => {
+    if (!userId) return;
+    const unsubscribeJump = subscribeKeys(
+      ({ jump }) => jump,
+      (value) => {
+        if (value) player.jump(world, rapier.Ray);
+      }
+    );
+
+    return () => {
+      unsubscribeJump();
+    };
+  }, [subscribeKeys, player, world, rapier.Ray, rapier.RigidBody, userId]);
+  useEffect(() => {
+    const unsubscribeAny = subscribeKeys(() => {
+      start();
+    });
+
+    return () => {
+      unsubscribeAny();
+    };
+  }, [subscribeKeys, start]);
+
+  useEffect(() => {
     const unsubscribeReset = useGame.subscribe(
       (state) => state.phase,
-      (value) => {
+      async (value) => {
         if (value === "ready") {
           restart();
           player.resetPosition();
         }
 
         if (value === "gameover") {
+          console.log("update score", userId, score);
+          await updateScore(userId!, score);
           player.removeForces();
         }
       }
@@ -51,29 +78,15 @@ export default function Player() {
     return () => {
       unsubscribeReset();
     };
-  }, [restart, player]);
-  useEffect(() => {
-    const unsubscribeJump = subscribeKeys(
-      ({ jump }) => jump,
-      (value) => {
-        if (value) player.jump(world, rapier.Ray);
-      }
-    );
-
-    const unsubscribeAny = subscribeKeys(() => {
-      start();
-    });
-    return () => {
-      unsubscribeJump();
-      unsubscribeAny();
-    };
-  }, [subscribeKeys, player, world, rapier.Ray, start]);
+  }, [player, restart, userId, score]);
 
   const [cameraPosition] = useState(() => new THREE.Vector3(16, 16, 16));
   const [cameraTarget] = useState(() => new THREE.Vector3());
 
   useFrame((state, delta) => {
     player.lookAt(state.camera, delta, cameraPosition, cameraTarget);
+
+    if (!userId) return;
 
     const { forward, backward, leftward, rightward } = getKeys();
 
