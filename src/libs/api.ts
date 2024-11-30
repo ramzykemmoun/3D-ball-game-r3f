@@ -27,14 +27,12 @@ export async function updateScore(userId: string, score: number) {
   });
 
   const { data } = await response.json();
-  console.log(data);
   return data.player.MatchedCount > 0;
 }
 
 export async function getLeaderboard() {
   const response = await fetch(baseUrl + "/leaderboard");
   const { data } = await response.json();
-  console.log({ data });
   if (data.results) {
     return data.results;
   }

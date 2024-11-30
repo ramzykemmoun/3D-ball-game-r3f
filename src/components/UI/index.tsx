@@ -22,8 +22,21 @@ export default function UI() {
 
   const [leaderboard, setLeaderboard] = useState([]);
   useEffect(() => {
-    if (phase === "gameover") getLeaderboard().then(setLeaderboard);
-  }, [phase, showLeaderboard]);
+    getLeaderboard().then(setLeaderboard);
+  }, [showLeaderboard]);
+
+  useEffect(() => {
+    const unsubscribePhase = useGame.subscribe(
+      (state) => state.phase === "gameover",
+      () => {
+        getLeaderboard().then(setLeaderboard);
+      }
+    );
+    return () => {
+      unsubscribePhase();
+    };
+  }, []);
+
   const time = useRef<HTMLDivElement>(null);
 
   const userId = useGame((state) => state.userId);
