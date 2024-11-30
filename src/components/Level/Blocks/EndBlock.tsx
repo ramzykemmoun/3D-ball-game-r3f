@@ -5,8 +5,8 @@ import { useGLTF } from "@react-three/drei";
 import { RigidBody } from "@react-three/rapier";
 
 export default function EndBlock({ position }: BlockProps) {
-  const diamond = useGLTF("assets/stylized_crystal_cluster.glb");
-  diamond.scene.children.forEach((mesh) => {
+  const bligha = useGLTF("assets/bligha.glb");
+  bligha.scene.children.forEach((mesh) => {
     mesh.castShadow = true;
   });
 
@@ -27,7 +27,11 @@ export default function EndBlock({ position }: BlockProps) {
         friction={0}
         position={[0, 0.3, 0]}
       >
-        <primitive scale={0.5} object={diamond.scene}></primitive>
+        <primitive
+          scale={0.5}
+          rotation={[0, Math.PI / 8, 0]}
+          object={bligha.scene}
+        ></primitive>
       </RigidBody>
     </group>
   );
