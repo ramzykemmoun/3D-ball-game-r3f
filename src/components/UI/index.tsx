@@ -27,9 +27,11 @@ export default function UI() {
 
   useEffect(() => {
     const unsubscribePhase = useGame.subscribe(
-      (state) => state.phase === "gameover",
-      () => {
-        getLeaderboard().then(setLeaderboard);
+      (state) => state.phase,
+      (value) => {
+        if (value === "gameover") {
+          getLeaderboard().then(setLeaderboard);
+        }
       }
     );
     return () => {
