@@ -3,6 +3,9 @@ type Props = {
 };
 
 export default function Leaderboard({ leaderboard }: Props) {
+  const cheaters = leaderboard.filter((p) =>
+    p.name.includes("(cheater)")
+  ).length;
   return (
     <div className="leaderboard">
       <h1>Leaderboard</h1>
@@ -18,7 +21,10 @@ export default function Leaderboard({ leaderboard }: Props) {
                   className="leaderboard-item"
                   key={index}
                 >
-                  <span>{player.name}</span>
+                  <span>
+                    {!player.name.includes("(cheater)") && index + 1 - cheaters}{" "}
+                    {player.name}
+                  </span>
                   <span>{player.bestScore.toFixed(2)}</span>
                 </div>
               );
