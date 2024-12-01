@@ -11,16 +11,14 @@ export default function Leaderboard({ leaderboard }: Props) {
           leaderboard.map(
             (player: { name: string; bestScore: number }, index: number) => {
               return (
-                <div className="leaderboard-item" key={index}>
-                  <span
-                    style={{
-                      color: player.name.includes("(cheater)")
-                        ? "red"
-                        : "black",
-                    }}
-                  >
-                    {player.name}
-                  </span>
+                <div
+                  style={{
+                    color: player.name.includes("(cheater)") ? "red" : "black",
+                  }}
+                  className="leaderboard-item"
+                  key={index}
+                >
+                  <span>{player.name}</span>
                   <span>{player.bestScore.toFixed(2)}</span>
                 </div>
               );
