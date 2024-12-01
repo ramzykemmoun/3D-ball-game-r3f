@@ -1,7 +1,7 @@
 import { createUser } from "@/libs/api";
 import { useGame } from "@/libs/store";
 import { useState } from "react";
-import { Toaster, toast } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 
 export default function Auth() {
   const [username, setUsername] = useState<string>("");
@@ -25,7 +25,6 @@ export default function Auth() {
   };
   return (
     <div className="form-container">
-      <Toaster position="top-center" />
       <form onSubmit={register}>
         <input
           type="text"
