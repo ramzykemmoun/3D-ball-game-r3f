@@ -28,6 +28,7 @@ export default function Player() {
         impulseStrength: 0.6,
         torqueStrength: 0.2,
         ref: playerRef,
+        color: "#1A75BB",
       }),
     []
   );
