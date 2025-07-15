@@ -1,5 +1,5 @@
 import { Canvas } from "@react-three/fiber";
-import { Experience, UI } from "@/components";
+import { Experience } from "@/components";
 import { KeyboardControls } from "@react-three/drei";
 import { keyboardControls } from "@/libs/keyboard";
 import { useEffect } from "react";
