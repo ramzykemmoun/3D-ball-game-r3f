@@ -29,7 +29,7 @@ function App() {
         >
           <Experience />
         </Canvas>
-        <UI />
+        {/* <UI /> */}
       </KeyboardControls>
     </>
   );
